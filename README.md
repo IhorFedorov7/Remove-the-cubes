@@ -1,17 +1,17 @@
-#Remove the cubes#
+# Remove the cubes #
 WEBGame
 
 Суть игры заключается в следующем: на странице есть поле, на котором расположены в случайном порядке разноцветные блоки. Кубики убираются с поля наведением курсора на кубик и последующим кликом левой кнопкой мышки. Даётся время - 1 минута. По мере убирания с поля кубиков, на поле появляются новые кубики (случайное количество от 0, 1 или 2). Уборка каждого кубика приносит 1 очко игроку. Цель игры - за 1 минуту набрать наибольшее количество очков..
 
-##Проект написан на:##
+## Проект написан на: ##
 ![](https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg)
 ![](https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg)
 
-#Реализован функционал#
+# Реализован функционал #
 
 - **Старт/стоп, Новая игра кнопки:**
 
-####HTML code####
+#### HTML code ####
 
 ```html
 <div class="cntrol-btm">
@@ -28,7 +28,7 @@ WEBGame
 </div>
 ```
 
-####Javascript####
+#### Javascript ####
 
 ```javascript
 const btnStart = document.querySelector(".start");
@@ -80,7 +80,7 @@ function cleaningForNewGame() {
 
 - **Поля отображения времени и очков:**
 
-####HTML code####
+#### HTML code ####
 
 ```html
 <div class="row col-3">
@@ -95,7 +95,7 @@ function cleaningForNewGame() {
 </div>
 ```
 
-####Javascript####
+#### Javascript ####
 
 ```javascript
 const timeDown = document.querySelector(".time");
@@ -136,7 +136,7 @@ function updataTimeDown() {
 8. Функция **//удаление куба по истечению времени или рестарте аптимизация функции **
 9. Функция **//добавление таблицы**
 
-####HTML code####
+#### HTML code ####
 
 ```html
 <div class="container game">
@@ -154,7 +154,7 @@ function updataTimeDown() {
 </div>
 ```
 
-####Javascript####
+#### Javascript ####
 
 ```javascript
 const field = document.querySelector(".field");
@@ -288,7 +288,7 @@ tournament.forEach((element, i) => {
 
 - **Модальное окно:**
 
-####HTML code####
+#### HTML code ####
 
 ```html
 <div class="modal">
@@ -320,7 +320,7 @@ tournament.forEach((element, i) => {
 </div>
 ```
 
-####Javascript####
+#### Javascript ####
 
 ```javascript
 const modal = document.querySelector(".modal");
@@ -366,7 +366,7 @@ function btnActive() {
 
 - **Также реализован localStorage**
 
-####Javascript####
+#### Javascript ####
 
 ```javascript
 //сохранение с локальное хранилище
@@ -387,8 +387,8 @@ function CreateTournament(result, name) {
 }
 ```
 
-#Напутственное слово#
+# Напутственное слово #
 
 Не претендую на игру года :D
 
-###End###
+### End ###
