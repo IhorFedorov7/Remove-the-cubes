@@ -1,0 +1,101 @@
+.display-4 {
+    height: 70px;
+}
+
+.control {
+    display: flex;
+    justify-content: end;
+    height: 100px;
+}
+
+.control>.col-3{
+    display: flex;
+    align-items: center;
+}
+
+.control>.row.col-3 {
+    margin-left: 9%;
+}
+
+.counter, .time {
+    border: 1px double black;
+    width: 70%;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.game {
+    margin-top: 20px;
+    height: 600px;
+}
+
+.gema-content {
+    display: flex;
+    justify-content: end;
+}
+
+.field {
+    width: 600px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.excel {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+#table {
+    border: 1px solid #000;
+    height: 500px;
+    position: relative;
+    text-align: center;
+    
+}
+
+.name-info, .result-info {
+    width: 50%;
+    border-bottom: 1px solid #000;
+}
+
+.result-block{
+    width: 100%;
+    display: flex;
+    
+}
+
+.modal-body {
+    width: 30%;
+}
+
+.counter-score{
+    width: 100%;
+    margin: auto;
+}
+
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    height: 50%;
+}
+
+.form-group.row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+.modal-footer {
+    border-top: 0  !important;
+    width: 100%;
+}
+
+.valid {
+    border: 3px solid green  !important;
+}
+
+.invalid {
+    border: 3px solid red  !important;
+}
