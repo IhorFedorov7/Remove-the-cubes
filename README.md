@@ -5,7 +5,7 @@ WEBGame
 
 ## Проект написан на: ##
 ![](https://webformyself.com/javascript/img/icon-js.png) 
-![](https://itchief.ru/assets/img/bootstrap/bootstrap-4.png)
+![](http://classic.welldi.ru/wa-data/public/site/themes/classic_pro/img/partners/logo4.png)
 
 
 # Реализован функционал #
