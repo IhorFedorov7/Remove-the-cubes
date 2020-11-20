@@ -9,11 +9,14 @@ const btnModal = document.querySelector(".btn-modal");
 const counterResult = document.querySelector(".counter-score");
 const table = document.querySelector("table");
 const nameValue = document.querySelector("#inputName");
+const modalInfo = document.querySelector(".modal.fade");
+const btnInfoModal = document.querySelector('.info');
+const closeInfo = document.querySelector('.close');
 
 const colors = ["red", "yellow", "green", "blue", "aqua", "olive", "purple"];
 
 let time = 60;
-let score = 1;
+let score = null;
 let timeInterval;
 let tournament;
 let result;
@@ -21,6 +24,9 @@ let result;
 btnStart.onclick = start;
 btnRestart.onclick = restart;
 btnModal.addEventListener('click', modalHide);
+btnInfoModal.onclick = modalInfoShow;
+closeInfo.onclick = modalInfoHide;
+
 
 //функция старта игры и вызова функции создания кубика
 function start() {
@@ -34,7 +40,7 @@ function start() {
         timeInterval = setInterval(updataTimeDown, 1000);
         switch (time) {
         case 60:
-            cubeBlock(2);
+            cubeBlock(3);
         break;
         }
         field.style.filter = "blur(0)";
@@ -58,24 +64,25 @@ function updataTimeDown() {
     timeDown.innerHTML = `${minutes}:${seconds}`;
 
     time--;
+    console.log(time);
   } else {
     setTimeout(() => {
       clearInterval(timeInterval);
     });
-
     gameOver();
   }
 }
 
+
 //Конец игры если истекло время или закончились кубики
 function gameOver() {
-    if (time == -1 || document.querySelectorAll('.cube').length == 0) {
+    if (time == -1 || time < -1 || document.querySelectorAll('.cube').length == 0) {
         if (btnStart.dataset.active == "true") {
           btnStart.dataset.active = "false";
           field.style.filter = "blur(10px)";
           field.style.pointerEvents = "none";
           modal.style.display = "block";
-          counterResult.innerHTML = `${score - 1}`;
+          counterResult.innerHTML = `${score}`;
           removeCube();
         }
         return (time = 60);
@@ -142,6 +149,7 @@ function cubeBlock(n) {
   }
 }
 
+
 //присваивание цвета класс .cube
 function setColorToElement(){
     let cube = document.querySelectorAll('.cube');
@@ -159,14 +167,34 @@ function getRandomColor(){
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
-//удаление куба по клику
+
+//удаление куба по клику так же настроена логика изменения очков
+//кубики разных цветов приносят разное количество очков и некоторые сокращают время и добавляют
 function deletCube(e){
     if (e.target.classList.contains('cube')){
-        e.target.style.backgroundColor = "silver";
-        e.target.classList.remove('cube');
-        counterGame.innerHTML = `${score}`; //счетчик
+      
+      if(e.target.style.backgroundColor == "red"){
+        time-= 10;
+        score+= 2;
+      }else if(e.target.style.backgroundColor == "yellow"){
         score++;
-        rendomCube()
+      }else if(e.target.style.backgroundColor == "green"){
+        time+= 5;
+        score-= 2;
+      }else if(e.target.style.backgroundColor == "blue"){
+        score++;
+      }else if(e.target.style.backgroundColor == "aqua"){
+        score+= 4;
+      }else if(e.target.style.backgroundColor == "olive"){
+        score++;
+      }else if(e.target.style.backgroundColor == "purple"){
+        score+=3;
+      }
+
+      e.target.classList.remove('cube');
+      e.target.style.backgroundColor = "silver";
+      counterGame.innerHTML = `${score}`; //счетчик
+      rendomCube();
     }
 } 
 
@@ -206,19 +234,32 @@ function removeCube() {
 }
 
 
-//скрытие модального окна
+//скрытие модального окна с результатом
 function modalHide() {
     storage();
     cleaningForNewGame();
 }
 
 
+//открвть и скрыть окно
+function modalInfoShow() {
+  modalInfo.style.opacity = 1;
+  modalInfo.style.display = "block";
+}
+
+function modalInfoHide() {
+  modalInfo.style.opacity = 0;
+  modalInfo.style.display = "none";
+}
+
+
 //очищает данные для новой игры
 function cleaningForNewGame() {
     modal.style.display = "none";
-    score = 1;
+    score = 0;
     counterGame.innerHTML = 0;
 }
+
 
 //валидация inputa
 nameValue.addEventListener('input', () => {
@@ -237,6 +278,7 @@ nameValue.addEventListener('input', () => {
     }
 });
 
+
 //доступ к кнопке только если имя валидное
  function btnActive() {
     let valid = document.querySelector('.valid');
@@ -251,7 +293,7 @@ nameValue.addEventListener('input', () => {
 
 //сохранение с локальное хранилище 
 function storage() {
-    tournament.push(new CreateTournament(result  = (score -1), nameValue.value));
+    tournament.push(new CreateTournament(result  = score , nameValue.value));
     localStorage.setItem('tournament', JSON.stringify(tournament));
     tableStoreg(tournament.length - 1);
 }
@@ -259,6 +301,7 @@ function storage() {
 
 //Работа с localStorage и Выводом в таблицу
 localStorage.length < 1 ? tournament = [] : tournament = JSON.parse(localStorage.getItem('tournament'));
+
 
 //добавление таблицы
 const tableStoreg = (i) => {

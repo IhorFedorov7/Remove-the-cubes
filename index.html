@@ -29,8 +29,10 @@
                 <div class="time">1:00</div>
             </div>
           </div>
-          <div class="col-2">
-            
+          <div class="col-3">
+            <button type="button" class="btn btn-primary info" data-toggle="modal" data-target="#staticBackdrop">
+              Info
+            </button>
           </div>
         </div>
     </div>
@@ -68,12 +70,45 @@
                     id="inputName" 
                     title="Имя должно состоять мин., из 2 и макс., 15 букв, символов ввод цифр доступен">
                   </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-primary btn-modal" disabled>Save</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-modal" disabled>Save</button>
+                </div>
               </div>
           </div>
       </div>
-  </div>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Сonditions of the game</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body info">
+              <p>
+                Суть игры заключается в следующем: на HTML-странице есть поле, на котором расположены в случайном порядке “кубики” - разноцветные блоки. Кубики убираются с поля наведением курсора на кубик и последующим кликом левой кнопкой мышки. Даётся время - 1 минута. По мере убирания с поля кубиков, на поле появляются новые кубики (случайное количество от 0, 1 или 2).
+              </p>
+              <p>
+                Цель игры - за 1 минуту набрать наибольшее количество очков.
+              </p>
+              <p>
+                Кубик "red" очков +2, время -10 сек<br>
+                Кубик "yellow" очков +1<br>
+                Кубик "green" очков -2, время +5 сек<br>
+                Кубик "blue" очков +1<br>
+                Кубик "aqua" очков +4<br>
+                Кубик "olive" очков +1<br>
+                Кубик "purple" очков +3<br>
+            </p>
+          </div>
+          <div class="modal-footer">
+            
+          </div>
+        </div>
+      </div>
         
       <script src="./index.js"></script>
 </body>

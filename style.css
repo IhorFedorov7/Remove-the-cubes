@@ -8,7 +8,7 @@
     height: 100px;
 }
 
-.control>.col-3{
+.control>.col-3, .control>.col-2{
     display: flex;
     align-items: center;
 }
@@ -71,6 +71,10 @@
     width: 30%;
 }
 
+.modal-body.info{
+    width: 100%;
+}
+
 .counter-score{
     width: 100%;
     margin: auto;
@@ -80,6 +84,10 @@
     display: flex;
     align-items: center;
     height: 50%;
+}
+
+.modal-dialog-scrollable {
+    height: 100%;
 }
 
 .form-group.row {
