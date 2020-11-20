@@ -241,12 +241,13 @@ function modalHide() {
 }
 
 
-//открвть и скрыть окно
+//открвть окно
 function modalInfoShow() {
   modalInfo.style.opacity = 1;
   modalInfo.style.display = "block";
 }
 
+//скрыть окно
 function modalInfoHide() {
   modalInfo.style.opacity = 0;
   modalInfo.style.display = "none";
