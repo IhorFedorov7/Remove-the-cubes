@@ -45,7 +45,8 @@ WEBGame
     data-target="#staticBackdrop"
   >
     Info
-</button>
+  </button>
+</div>
 ```
 
 #### Javascript ####
