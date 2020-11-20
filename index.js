@@ -21,15 +21,15 @@ let timeInterval;
 let tournament;
 let result;
 
-btnStart.onclick = start;
-btnRestart.onclick = restart;
+btnStart.onclick = startGame;
+btnRestart.onclick = restartGame;
 btnModal.addEventListener('click', modalHide);
 btnInfoModal.onclick = modalInfoShow;
 closeInfo.onclick = modalInfoHide;
 
 
 //функция старта игры и вызова функции создания кубика
-function start() {
+function startGame() {
     const excelBlock = document.querySelectorAll(".excel");
   
     excelBlock.forEach((el) => el.onclick = deletCube);
@@ -64,7 +64,7 @@ function updataTimeDown() {
     timeDown.innerHTML = `${minutes}:${seconds}`;
 
     time--;
-    console.log(time);
+    
   } else {
     setTimeout(() => {
       clearInterval(timeInterval);
@@ -76,7 +76,7 @@ function updataTimeDown() {
 
 //Конец игры если истекло время или закончились кубики
 function gameOver() {
-    if (time == -1 || time < -1 || document.querySelectorAll('.cube').length == 0) {
+    if (time <= -1 || document.querySelectorAll('.cube').length == 0) {
         if (btnStart.dataset.active == "true") {
           btnStart.dataset.active = "false";
           field.style.filter = "blur(10px)";
@@ -91,10 +91,10 @@ function gameOver() {
 
 
 //функция рестарт которая вызыват старт если на поле есть квадратик то его удалчет
-function restart() {
+function restartGame() {
   time = 60;
   removeCube();
-  start();
+  startGame();
   cleaningForNewGame();
 }
 
@@ -194,13 +194,13 @@ function deletCube(e){
       e.target.classList.remove('cube');
       e.target.style.backgroundColor = "silver";
       counterGame.innerHTML = `${score}`; //счетчик
-      rendomCube();
+      newRendomCube();
     }
 } 
 
 
 //создает рандомное количество кубиков от 0 до 2
-function rendomCube() {
+function newRendomCube() {
     let random = Math.round(Math.random() * (2 - 0)); 
     switch (random) {
         case 0:
@@ -294,9 +294,9 @@ nameValue.addEventListener('input', () => {
 
 //сохранение с локальное хранилище 
 function storage() {
-    tournament.push(new CreateTournament(result  = score , nameValue.value));
+    tournament.push(new CreateNewResolveTournament(result  = score , nameValue.value));
     localStorage.setItem('tournament', JSON.stringify(tournament));
-    tableStoreg(tournament.length - 1);
+    tableResolveTournament(tournament.length - 1);
 }
 
 
@@ -305,7 +305,7 @@ localStorage.length < 1 ? tournament = [] : tournament = JSON.parse(localStorage
 
 
 //добавление таблицы
-const tableStoreg = (i) => {
+const tableResolveTournament = (i) => {
     table.innerHTML += `
         <tr class="tr">
             <td class="name-info">${tournament[i].name}</td>
@@ -316,10 +316,10 @@ const tableStoreg = (i) => {
 }
 
 tournament.forEach((element, i) => {
-    tableStoreg(i);
+  tableResolveTournament(i);
 })
 
-function CreateTournament (result, name) {
+function CreateNewResolveTournament (result, name) {
     this.result = result;
     this.name = name;
 }
