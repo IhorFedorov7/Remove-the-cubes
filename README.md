@@ -321,7 +321,7 @@ function newRendomCube() {
   }
 }
 
-//удаление куба по истечению времени или рестарте аптимизация функции
+//удаление куба по истечению времени или рестарте оптимизация функции
 function removeCube() {
   const cube = document.querySelectorAll(".cube");
 
